@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <meta charset="UTF-8">
+    <script src="jquery-1.4.1.min.js"></script>
+    <script src="js/vue.js"></script>
+    <script src="js/FH.js"></script>
+    <script src="js/TestCtrls.js"></script>
+</head>
+<body>
+    <h2>VUE UI Demo</h2>
+    <p></p>
+    <div id="vueapp">
+        <h3> {{message}}</h3>
+        <ol>
+            <todo-item v-for="item in groceryList" v-bind:todo="item" vbind:key="item.id"></todo-item>
+        </ol>
+        <div>---------Students:---------</div>
+        <ul>
+            <student-ui v-for="s in students" v-bind:stu="s" vbind:key="s.Id"></student-ui>
+        </ul>
+    </div>
+    
+</body>
+</html>
+
+<script type="text/javascript">
+
+    var $E = window.external;
+
+    function getModel() {
+        var model;
+        var s = "model=" + $E.ModelJson();
+        eval(s);
+        return model;
+    }
+
+    var app = new Vue(
+        {
+            el: '#vueapp',
+            data: {
+                message: 'FH & Vue Demo-loaded:' + new Date().toLocaleString(),
+                groceryList: '',
+                students: getModel().Students
+            }
+        }
+    );
+
+
+    function getVueData() {
+        $.getJSON("testData/todo.json",
+            function (data) {
+                app._data.groceryList = data;
+            });
+    }
+    getVueData();
+
+</script>

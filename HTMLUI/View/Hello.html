@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        .red {
+            color: red;
+        }
+    </style>
+
+    <!--<script src="http://code.jquery.com/jquery-1.4.1.min.js"></script>-->
+    <script src="jquery-1.4.1.min.js"></script>
+    <script src="js/FH.js"></script>
+    <script type="text/javascript">
+
+        var $E = window.external;
+        var $M;
+        function getModel() {
+            var s = "$M=" + $E.ModelJson();
+            eval(s);
+        }
+
+        $(function () {
+            getModel();
+        });
+
+        function btnTest_Click() {
+            alert("Hello test.");
+        }
+
+        function callcs() {
+            window.external.CalledByScript("Hello from script.");
+        }
+
+        function jqRed() {
+            $("h2").addClass("red");
+        }
+
+        function SeeModel() {
+            alert($M)
+        }
+
+
+
+        function loadTmplTest() {
+            var txt = getText('tmpl.html');
+            alert($(txt).filter(".tmpl")[1].innerHTML);
+        }
+    </script>
+</head>
+<body>
+    <h2>Hello World!</h2>
+    <div>
+        <input value="Hello" type="button" onclick="jqRed()" />
+        <input value="See model" type="button" onclick="SeeModel()" />
+        <a href="http://www.baidu.com">goto Baidu</a>
+    </div>
+
+    <ul>
+        <li><a href="easyUI.html">EasyUI</a></li>
+        <li><a href="vueUI.html">Vue UI Test</a></li>
+    </ul>
+    <hr/>
+    <form method="get">
+        <ul>
+            <li><a href="easyUI.html">EasyUI</a></li>
+            <li><a href="vueUI.html">Vue UI Test</a></li>
+            <li>
+                文本:
+                <input id="txtName" name="txtName" value="text 1" />
+            </li>
+            <li>
+                数字:
+                <input id="txtNumber" name="txtNumber" value="1" />
+            </li>
+            <li>
+                日期:
+                <input id="txtDate" name="txtDate" value="2018-01-01" />
+            </li>
+            <li>
+                <input id="btnSubmit" type="button" value="Submit" onclick="window.external.Post($('form').serialize())" />
+            </li>
+        </ul>
+    </form>
+
+    <input type="button" value="LoadText sync" onclick="loadTmplTest()" />
+    <input type="button" value="jqLoad" onclick="LoadTxt('tmpl.html')" />
+
+    <div id="divDest">
+    </div>
+</body>
+</html>
