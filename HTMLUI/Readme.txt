@@ -8,3 +8,12 @@ FH框架又能与现有流行的Javascript库密切相融，使得无论使用�
 良好结合，为迅速优质开发提供了基本物质条件。DEMO中提供了与Jquery,Vue结合的应用程序示例。
 
 采用兼容的数据层，可以提供与Web应用良好的兼容性。节省开发工作量。
+
+前后端分离的架构模式，json文件方式的mock数据，前端独立调试，有效提高开发质量与效率。
+
+开发模式：
+	1.独立前端调试模式：使用IE浏览器调试前端，使用json数据为Mock数据。在前端开发阶段可以使用此模式。
+	2.Desktop模式：使用内嵌的MainForm作为起始窗体，加载主View，使用本机的Controller配合前端工作。
+	3.纯Web模式：将View内容发布为Web网站，后端使用asp.net core mvc（支持跨平台）/asp.net mvc,与传统Web模式相同。
+	4.外壳Web模式： 使用内嵌MainForm作为起始窗体，加载主View,后端使用asp.net core mvc/asp.net mvc.
+		可增强前端功能（windows）
